@@ -1,22 +1,22 @@
 package tv.kazu.chatwork4s.models
 
 case class UserFull(
-  account_id: Int,
-  room_id: Int,
+  accountId: Int,
+  roomId: Int,
   name: String,
-  chatwork_id: String,
-  organization_id: Int,
-  organization_name: String,
+  chatworkId: String,
+  organizationId: Int,
+  organizationName: String,
   department: String,
   title: String,
   url: String,
   introduction: String,
   mail: String,
-  tel_organization: String,
-  tel_extension: String,
-  tel_mobile: String,
+  telOrganization: String,
+  telExtension: String,
+  telMobile: String,
   skype: String,
   facebook: String,
   twitter: String,
-  avatar_image_url: String
+  avatarImageUrl: String
 )

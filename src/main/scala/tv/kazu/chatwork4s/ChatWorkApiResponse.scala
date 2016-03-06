@@ -16,10 +16,12 @@ class ChatWorkApiResponse(val httpResponse: HttpResponse[String]) {
 
 object ChatWorkApiResponse {
   object Implicits {
-    implicit val userReads: Reads[User] = Json.reads[User]
-    implicit val userMiniReads: Reads[UserMini] = Json.reads[UserMini]
-    implicit val userFullReads: Reads[UserFull] = Json.reads[UserFull]
-    implicit val roomReads: Reads[Room] = Json.reads[Room]
-    implicit val messageReads: Reads[Message] = Json.reads[Message]
+    import com.github.tototoshi.play.json.JsonNaming
+
+    implicit val userReads: Reads[User] = JsonNaming.snakecase(Json.reads[User])
+    implicit val userMiniReads: Reads[UserMini] = JsonNaming.snakecase(Json.reads[UserMini])
+    implicit val userFullReads: Reads[UserFull] = JsonNaming.snakecase(Json.reads[UserFull])
+    implicit val roomReads: Reads[Room] = JsonNaming.snakecase(Json.reads[Room])
+    implicit val messageReads: Reads[Message] = JsonNaming.snakecase(Json.reads[Message])
   }
 }

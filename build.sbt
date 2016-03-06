@@ -14,9 +14,11 @@ libraryDependencies ++=  {
 
   val scalaJHttpVersion = "2.2.1"
   val playJsonVersion = "2.3.10"
+  val playJsonNamingVersion = "0.2.0"
 
   Seq(
     "org.scalaj" %% "scalaj-http" % scalaJHttpVersion,
-    "com.typesafe.play" %% "play-json" % playJsonVersion
+    "com.typesafe.play" %% "play-json" % playJsonVersion,
+    "com.github.tototoshi" %% "play-json-naming" % playJsonNamingVersion
   )
 }

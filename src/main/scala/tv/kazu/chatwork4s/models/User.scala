@@ -1,15 +1,15 @@
 package tv.kazu.chatwork4s.models
 
 case class User(
-  account_id: Int,
+  accountId: Int,
   /**
    * /rooms/{room_id}/members の場合は、None となる
    */
-  room_id: Option[Int],
+  roomId: Option[Int],
   name: String,
-  chatwork_id: String,
-  organization_id: Int,
-  organization_name: String,
+  chatworkId: String,
+  organizationId: Int,
+  organizationName: String,
   department: String,
-  avatar_image_url: String
+  avatarImageUrl: String
 )
