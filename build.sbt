@@ -22,3 +22,35 @@ libraryDependencies ++=  {
     "com.github.tototoshi" %% "play-json-naming" % playJsonNamingVersion
   )
 }
+
+organization := "tv.kazu"
+
+organizationName := ""
+
+organizationHomepage := Some(new URL("http://kazu.tv"))
+
+publishMavenStyle := true
+
+publishTo := {
+  val nexus = "https://oss.sonatype.org/"
+  if (version.value.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
+
+pomExtra := (
+  <scm>
+    <url>https://github.com/k4200/chatwork4s</url>
+    <connection>scm:git:git@github.com:k4200/chatwork4s.git</connection>
+    <developerConnection>scm:git:https://github.com/k4200/chatwork4s.git</developerConnection>
+  </scm>
+  <developers>
+    <developer>
+      <id>k4200</id>
+      <name>KASHIMA Kazuo</name>
+      <email>k4200 [at] kazu.tv</email>
+      <url>https://twitter.com/k4200</url>
+    </developer>
+  </developers>
+)
