@@ -28,6 +28,12 @@ trait ChatWorkApiClientBase {
     }
   }
 
+  def room(roomId: Int): Future[Room] = {
+    get("/rooms/" + roomId).map { response =>
+      response.jsValue.as[Room]
+    }
+  }
+
   def rooms(): Future[Seq[Room]] = {
     get("/rooms").map { response =>
       response.jsValue.as[Seq[Room]]

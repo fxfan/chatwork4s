@@ -13,5 +13,9 @@ case class Room(
   fileNum: Int,
   taskNum: Int,
   iconPath: String,
-  lastUpdateTime: Int
+  lastUpdateTime: Int,
+  /**
+   * /rooms/&lt;room id&gt; の時のみセットされる
+   */
+  description: Option[String]
 )
