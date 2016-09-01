@@ -5,7 +5,16 @@ A ChatWork API client in Scala, based on scalaj-http & play-json.
 ## Prerequisites
 
 * Only Scala 2.11 is supported.
-* This library depends on play-json 2.3 since I'm still using Play! 2.3 for the project that I'm using this library for.
+
+## Releases
+
+* This library depends on play-json, and there are different chatwork4s versions, each of which is for a specific version of
+Play! framework.
+
+|chatwork4s Release|Target Play! framework version|
+|-------|---------------------|
+|0.2.4-SNAPSHOT|2.4.X|
+|0.1-SNAPSHOT|2.3.X|
 
 ## Installation
 
