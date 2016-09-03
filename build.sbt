@@ -15,8 +15,8 @@ libraryDependencies += "org.scalacheck" % "scalacheck_2.11" % "1.12.2"
 libraryDependencies ++=  {
 
   val scalaJHttpVersion = "2.2.1"
-  val playJsonVersion = "2.3.10"
-  val playJsonNamingVersion = "0.2.0"
+  val playJsonVersion = "2.5.6"
+  val playJsonNamingVersion = "1.1.0"
 
   Seq(
     "org.scalaj" %% "scalaj-http" % scalaJHttpVersion,
