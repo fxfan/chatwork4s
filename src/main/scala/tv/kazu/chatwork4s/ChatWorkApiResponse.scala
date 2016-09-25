@@ -12,6 +12,18 @@ class ChatWorkApiResponse(val httpResponse: HttpResponse[String]) {
   } getOrElse {
     JsNull
   }
+
+  def as[T](implicit reads: Reads[T]): T = {
+    jsValue.as[T]
+  }
+
+  def asEither[T](implicit reads: Reads[T]): Either[List[String], T] = {
+    if (httpResponse.isSuccess) {
+      Right(jsValue.as[T])
+    } else {
+      Left((jsValue \ "errors").get.as[List[String]])
+    }
+  }
 }
 
 object ChatWorkApiResponse {
