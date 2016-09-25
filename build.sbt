@@ -1,6 +1,6 @@
 name := """chatwork4s"""
 
-version := "0.2.5"
+version := "0.2.5.1-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
