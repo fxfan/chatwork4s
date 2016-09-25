@@ -1,6 +1,6 @@
 name := """chatwork4s"""
 
-version := "0.2.5-SNAPSHOT"
+version := "0.2.5"
 
 scalaVersion := "2.11.8"
 
@@ -15,7 +15,7 @@ libraryDependencies += "org.scalacheck" % "scalacheck_2.11" % "1.12.2"
 libraryDependencies ++=  {
 
   val scalaJHttpVersion = "2.2.1"
-  val playJsonVersion = "2.5.6"
+  val playJsonVersion = "2.5.8"
   val playJsonNamingVersion = "1.1.0"
 
   Seq(
@@ -40,6 +40,10 @@ publishTo := {
   else
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
+
+licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+
+homepage := Some(url("https://github.com/k4200/chatwork4s"))
 
 pomExtra := (
   <scm>
