@@ -15,7 +15,7 @@ libraryDependencies += "org.scalacheck" % "scalacheck_2.11" % "1.12.2"
 libraryDependencies ++=  {
 
   val scalaJHttpVersion = "2.2.1"
-  val playJsonVersion = "2.5.8"
+  val playJsonVersion = "2.5.14"
   val playJsonNamingVersion = "1.1.0"
 
   Seq(
