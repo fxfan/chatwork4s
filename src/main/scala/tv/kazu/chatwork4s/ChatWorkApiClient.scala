@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import ChatWorkApiResponse.Implicits._
 
 trait ChatWorkApiClientBase {
-  val apiBase = "https://api.chatwork.com/v1"
+  val apiBase = "https://api.chatwork.com/v2"
 
   protected val apiToken: String
   protected val connTimeoutMs: Int
