@@ -22,7 +22,7 @@ Play! framework.
 ```scala
 resolvers += Resolver.sonatypeRepo("snapshots")
 
-libraryDependencies += "tv.kazu" %% "chatwork4s" % "0.2.5"
+libraryDependencies += "tv.kazu" %% "chatwork4s" % "0.2.5.2"
 ```
 
 ## Usage
