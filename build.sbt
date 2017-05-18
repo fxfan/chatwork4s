@@ -1,10 +1,12 @@
 name := """chatwork4s"""
 
-version := "0.2.5.1-SNAPSHOT"
+version := "0.2.5.1"
 
 scalaVersion := "2.11.8"
 
 scalacOptions ++= Seq("-feature")
+
+resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "3.0.1" % "test"
 
@@ -15,7 +17,7 @@ libraryDependencies += "org.scalacheck" % "scalacheck_2.11" % "1.12.2"
 libraryDependencies ++=  {
 
   val scalaJHttpVersion = "2.2.1"
-  val playJsonVersion = "2.5.8"
+  val playJsonVersion = "2.5.14"
   val playJsonNamingVersion = "1.1.0"
 
   Seq(

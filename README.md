@@ -13,7 +13,7 @@ Play! framework.
 
 |chatwork4s Release|Target Play! framework version|
 |-------|---------------------|
-|0.2.5|2.5.X|
+|0.2.5.1|2.5.X|
 |0.2.4-SNAPSHOT|2.4.X|
 |0.1-SNAPSHOT|2.3.X|
 
@@ -38,6 +38,12 @@ val resultFuture: Future[UserFull] = client.me()
 ## Limitations
 
 Not all the API endpoints are supported.
+
+## Changelog
+
+* 0.2.5.1 (2017-05-18)
+  * Updated dependencies
+  * Updated sbt to 0.13.15
 
 ## License
 
