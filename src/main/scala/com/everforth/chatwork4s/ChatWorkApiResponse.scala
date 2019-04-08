@@ -1,9 +1,9 @@
-package tv.kazu.chatwork4s
+package com.everforth.chatwork4s
 
-import play.api.libs.json.{JsNull, Reads, Json, JsValue}
-import tv.kazu.chatwork4s.models._
-
+import com.everforth.chatwork4s.models.{User, UserFull, UserMini}
+import play.api.libs.json.{JsNull, JsValue, Json, Reads}
 import scalaj.http.HttpResponse
+import com.everforth.chatwork4s.models._
 
 class ChatWorkApiResponse(val httpResponse: HttpResponse[String]) {
   val body = if (!httpResponse.body.isEmpty) Some(httpResponse.body) else None

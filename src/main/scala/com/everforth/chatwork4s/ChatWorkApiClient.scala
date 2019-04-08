@@ -1,70 +1,61 @@
-package tv.kazu.chatwork4s
+package com.everforth.chatwork4s
 
 import play.api.libs.json.JsNull
-import tv.kazu.chatwork4s.models._
+import com.everforth.chatwork4s.models._
 
 import scala.concurrent.{ExecutionContext, Future}
-import scalaj.http.{HttpOptions, HttpRequest, Http}
-import scala.concurrent.ExecutionContext.Implicits.global
+import scalaj.http.{HttpRequest, Http}
 
 import ChatWorkApiResponse.Implicits._
 
-trait ChatWorkApiClientBase {
+trait ChatWorkApiClient {
+
   val apiBase = "https://api.chatwork.com/v2"
 
   protected val apiToken: String
   protected val connTimeoutMs: Int
   protected val readTimeoutMs: Int
+  implicit protected val executionContext: ExecutionContext
 
   def me(): Future[UserFull] = {
-    get("/me").map { response =>
-      response.as[UserFull]
-    }
+    get("/me").map(_.as[UserFull])
   }
 
   def contacts(): Future[List[User]] = {
-    get("/contacts").map { response =>
-      response.as[List[User]]
-    }
+    get("/contacts").map(_.as[List[User]])
   }
 
   def room(roomId: Int): Future[Room] = {
-    roomOrErrors(roomId).map(throwLeft(_))
+    roomOrErrors(roomId).map(throwLeft)
   }
 
   def roomOrErrors(roomId: Int): Future[Either[List[String], Room]] = {
-    get("/rooms/" + roomId).map { response =>
-      response.asEither[Room]
-    }
+    get(s"/rooms/$roomId").map(_.asEither[Room])
   }
 
   def rooms(): Future[List[Room]] = {
-    roomsOrErrors().map(throwLeft(_))
+    roomsOrErrors().map(throwLeft)
   }
 
   def roomsOrErrors(): Future[Either[List[String], List[Room]]] = {
-    get("/rooms").map { response =>
-      response.asEither[List[Room]]
-    }
+    get("/rooms").map(_.asEither[List[Room]])
   }
 
   def roomMembers(roomId: Int): Future[List[User]] = {
-    roomMembersOrErrors(roomId).map(throwLeft(_))
+    roomMembersOrErrors(roomId).map(throwLeft)
   }
 
   def roomMembersOrErrors(roomId: Int): Future[Either[List[String], List[User]]] = {
-    get(s"/rooms/${roomId}/members").map { response =>
-      response.asEither[List[User]]
-    }
+    get(s"/rooms/$roomId/members").map(_.asEither[List[User]])
   }
 
   def messages(roomId: Int, fetchNext: Boolean = false): Future[List[Message]] = {
-    messagesOrErrors(roomId, fetchNext).map(throwLeft(_))
+    messagesOrErrors(roomId, fetchNext).map(throwLeft)
   }
 
   def messagesOrErrors(roomId: Int, fetchNext: Boolean = false): Future[Either[List[String], List[Message]]] = {
     val params = if (fetchNext) Seq() else Seq(("force", "1"))
-    get(s"/rooms/${roomId}/messages", params).map { response =>
+    get(s"/rooms/$roomId/messages", params).map { response =>
       if (response.httpResponse.isSuccess) {
         if (response.jsValue != JsNull) {
           Right(response.as[List[Message]])
@@ -77,16 +68,21 @@ trait ChatWorkApiClientBase {
     }
   }
 
-  def get(path: String, params: Seq[(String, String)] = Seq())(implicit ec: ExecutionContext = global): Future[ChatWorkApiResponse] = {
-    Future {
-      new ChatWorkApiResponse(getRequest(path, params).asString)
-    }
+  def postMessage(
+      roomId: Int,
+      message: String,
+      mentions: Seq[User] = Seq.empty,
+  ): Future[ChatWorkApiResponse] = {
+    val tos = mentions.map(u => s"[To:${u.accountId}] ${u.name}さん").mkString("\n")
+    post(s"/rooms/$roomId/messages", Seq(("body", s"$tos\n$message")))
   }
 
-  def post(path: String, params: Seq[(String, String)])(implicit ec: ExecutionContext = global): Future[ChatWorkApiResponse] = {
-    Future {
-      new ChatWorkApiResponse(postRequest(path, params).asString)
-    }
+  def get(path: String, params: Seq[(String, String)] = Seq()): Future[ChatWorkApiResponse] = Future {
+    new ChatWorkApiResponse(getRequest(path, params).asString)
+  }
+
+  def post(path: String, params: Seq[(String, String)]): Future[ChatWorkApiResponse] = Future {
+    new ChatWorkApiResponse(postRequest(path, params).asString)
   }
 
   def getRequest(path: String, params: Seq[(String, String)]): HttpRequest = {
@@ -113,7 +109,26 @@ trait ChatWorkApiClientBase {
   }
 }
 
-class ChatWorkApiClient(val apiToken: String, protected val connTimeoutMs: Int = 1000 * 5, protected val readTimeoutMs: Int = 1000 * 180)
-  extends ChatWorkApiClientBase {
+object ChatWorkApiClient {
+
+  def apply(
+      apiToken: String,
+      connTimeoutMs: Int = 1000 * 5,
+      readTimeoutMs: Int = 1000 * 30,
+  )(implicit
+      ec: ExecutionContext
+  ): ChatWorkApiClient = {
+
+    val _apiToken = apiToken
+    val _connTimeoutMs = connTimeoutMs
+    val _readTimeoutMs = readTimeoutMs
+
+    new ChatWorkApiClient {
+      override val executionContext: ExecutionContext = ec
+      override val apiToken: String = _apiToken
+      override val connTimeoutMs: Int = _connTimeoutMs
+      override val readTimeoutMs: Int = _readTimeoutMs
+    }
+  }
 
 }

@@ -1,11 +1,23 @@
-name := """chatwork4s"""
 
-version := "0.2.5.2"
+ThisBuild / scalaVersion     := "2.12.8"
+ThisBuild / version          := "0.1.0-SNAPSHOT"
+ThisBuild / organization     := "com.everforth"
+ThisBuild / organizationName := "Everforth Co.,Ltd."
+ThisBuild / licenses         := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
-scalaVersion := "2.11.8"
+lazy val root = (project in file("."))
+    .settings(
+      name := "chatwork4s",
+      scalacOptions ++= Seq("-feature"),
+      libraryDependencies ++= Seq(
+        "org.scalatest" %% "scalatest" % "3.0.5" % Test,
+        "org.scalaj" %% "scalaj-http" % "2.4.1",
+        "com.typesafe.play" %% "play-json" % "2.7.2",
+        "com.github.tototoshi" %% "play-json-naming" % "1.3.0"
+      )
+    )
 
-scalacOptions ++= Seq("-feature")
-
+/*
 resolvers += "Scalaz Bintray Repo" at "http://dl.bintray.com/scalaz/releases"
 
 libraryDependencies += "org.specs2" %% "specs2-core" % "3.0.1" % "test"
@@ -13,25 +25,6 @@ libraryDependencies += "org.specs2" %% "specs2-core" % "3.0.1" % "test"
 libraryDependencies += "org.specs2" %% "specs2-scalacheck" % "3.0.1" % "test"
 
 libraryDependencies += "org.scalacheck" % "scalacheck_2.11" % "1.12.2"
-
-libraryDependencies ++=  {
-
-  val scalaJHttpVersion = "2.2.1"
-  val playJsonVersion = "2.5.14"
-  val playJsonNamingVersion = "1.1.0"
-
-  Seq(
-    "org.scalaj" %% "scalaj-http" % scalaJHttpVersion,
-    "com.typesafe.play" %% "play-json" % playJsonVersion,
-    "com.github.tototoshi" %% "play-json-naming" % playJsonNamingVersion
-  )
-}
-
-organization := "tv.kazu"
-
-organizationName := ""
-
-organizationHomepage := Some(new URL("http://kazu.tv"))
 
 publishMavenStyle := true
 
@@ -42,10 +35,6 @@ publishTo := {
   else
     Some("releases"  at nexus + "service/local/staging/deploy/maven2")
 }
-
-licenses := Seq("The Apache Software License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
-
-homepage := Some(url("https://github.com/k4200/chatwork4s"))
 
 pomExtra := (
   <scm>
@@ -62,3 +51,4 @@ pomExtra := (
     </developer>
   </developers>
 )
+*/

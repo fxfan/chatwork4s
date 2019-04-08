@@ -1,4 +1,4 @@
-package tv.kazu.chatwork4s.models
+package com.everforth.chatwork4s.models
 
 case class User(
   accountId: Int,

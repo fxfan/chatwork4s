@@ -1,5 +1,1 @@
-// For publishing Sonatype
-addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "1.1")
-
-// PGP signing
-addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.0.0")
+addSbtPlugin("au.com.onegeek" %% "sbt-dotenv" % "2.0.117")
