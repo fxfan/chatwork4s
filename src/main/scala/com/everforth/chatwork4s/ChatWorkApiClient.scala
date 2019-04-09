@@ -73,8 +73,13 @@ trait ChatWorkApiClient {
       message: String,
       mentions: Seq[User] = Seq.empty,
   ): Future[ChatWorkApiResponse] = {
-    val tos = mentions.map(u => s"[To:${u.accountId}] ${u.name}さん").mkString("\n")
-    post(s"/rooms/$roomId/messages", Seq(("body", s"$tos\n$message")))
+    val body = if (mentions.isEmpty)
+      message
+    else {
+      val tos = mentions.map(u => s"[To:${u.accountId}] ${u.name}さん").mkString("\n")
+      s"$tos\n$message"
+    }
+    post(s"/rooms/$roomId/messages", Seq(("body", body)))
   }
 
   def get(path: String, params: Seq[(String, String)] = Seq()): Future[ChatWorkApiResponse] = Future {

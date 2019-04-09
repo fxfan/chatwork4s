@@ -23,6 +23,7 @@ class ChatWorkApiClientSpec extends FlatSpec with Matchers {
   }
 
   "postMessage" should "post a message with mentions" in {
+    client.postMessage(roomId, "テストだよ！")
     val contactIds = Seq(sys.env("CONTACT_ID_1").toInt, sys.env("CONTACT_ID_2").toInt)
     client.contacts().foreach { contacts =>
       client.postMessage(roomId, "テストだよ！", contacts.filter(u => contactIds.contains(u.accountId)))
