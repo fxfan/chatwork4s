@@ -1,4 +1,4 @@
-package com.everforth.chatwork4s
+package com.everforth.cw4s
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import org.scalatest.{FlatSpec, Matchers}

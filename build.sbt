@@ -9,7 +9,7 @@ ThisBuild / licenses         := Seq("The Apache Software License, Version 2.0" -
 lazy val root = (project in file("."))
     .enablePlugins(AutoMkcolPlugin)
     .settings(
-      name := "chatwork4s",
+      name := "cw4s",
       scalacOptions ++= Seq("-feature"),
       libraryDependencies ++= Seq(
         "org.scalatest" %% "scalatest" % "3.0.5" % Test,

@@ -1,7 +1,7 @@
-package com.everforth.chatwork4s
+package com.everforth.cw4s
 
 import play.api.libs.json.JsNull
-import com.everforth.chatwork4s.models._
+import com.everforth.cw4s.models._
 
 import scala.concurrent.{ExecutionContext, Future}
 import scalaj.http.{HttpRequest, Http}

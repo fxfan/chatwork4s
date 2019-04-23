@@ -1,4 +1,4 @@
-package com.everforth.chatwork4s.models
+package com.everforth.cw4s.models
 
 case class UserFull(
   accountId: Int,
